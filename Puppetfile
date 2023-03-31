@@ -1,6 +1,6 @@
 mod 'puppet-nginx', '4.3.0'
 mod 'puppetlabs-concat', '7.3.3'
 mod 'puppetlabs-stdlib', '8.5.0'
-mod 'puppet-minecraft', '5.0.0'
+mod 'andschwa-minecraft', '2.1.6'
 mod 'puppetlabs-java', '9.0.1'
 mod 'puppet-archive', '6.1.1'
