@@ -23,32 +23,9 @@ class minecraft {
     content => "eula=true",
     require => Exec['init start server'],
   }  
-  vcsrepo { '/opt/minecraft/mcrcon':
-    ensure   => present,
-    provider => git,
-    source   => 'https://github.com/Tiiffi/mcrcon.git',
-    require => File['/opt/minecraft'],
-  }
-  exec { 'make mcrcon':
-    cwd     => '/opt/minecraft/mcrcon',
-    command => 'make',
-    path    => "/usr/bin",
-    unless  => 'test -x /opt/minecraft/mcrcon/mcrcon',
-  }
-  exec { 'install mcrcon':
-    cwd     => '/opt/minecraft/mcrcon',
-    path    => "/usr/bin",
-    command => 'make install',
-    unless  => 'test -x /usr/local/bin/mcrcon',   
-  }
-  file { '/opt/minecraft/server.properties':
-    ensure => file,
-    source => 'puppet:///modules/minecraft/server.properties',
-  }
   file { '/etc/systemd/system/minecraft.service':
     ensure => file,
     source => 'puppet:///modules/minecraft/minecraft.service',
-    require => File['/opt/minecraft/server.properties'],    
   }
   service { 'minecraft.service':
     ensure => running,
