@@ -1,0 +1,13 @@
+[Unit]
+Description=Minecraft Server
+
+[Service]
+KillMode=none
+SuccessExitStatus=0 1
+
+WorkingDirectory=/opt/minecraft/
+ExecStart=/usr/bin/java -Xmx1024M -Xms1024M -jar server.jar
+ExecStop=/usr/local/bin/mcrcon -H 192.168.210.154 -P 25575 -p 111111 stop
+
+[Install]
+WantedBy=multi-user.target
