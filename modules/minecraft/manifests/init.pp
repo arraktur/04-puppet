@@ -1,6 +1,6 @@
 class minecraft {
   package {  'java':
-    name   => java-20-openjdk,
+    name   => java-latest-openjdk,
     ensure => present,
   }
   file { '/opt/minecraft':
