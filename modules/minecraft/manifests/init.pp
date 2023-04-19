@@ -13,12 +13,6 @@ class minecraft {
     verbose     => false,
     require => File['/opt/minecraft'],  
   }
-  exec { 'init start server':
-    cwd     => '/opt/minecraft',
-    command => 'java -Xmx1024M -Xms1024M -jar server.jar --nogui',
-    path    => "/usr/bin",
-    unless  => 'test -e /opt/minecraft_2/eula.txt',
-  }
   file { '/opt/minecraft/eula.txt':
     content => "eula=true",
     require => Exec['init start server'],
