@@ -12,9 +12,9 @@ node master.puppet {
     listen_port => 81,
     proxy => 'http://192.168.210.153',
   }
-  exec { 'config SELinux Booleans':
-    command => 'setsebool -P httpd_can_network_connect on',
-    path    => "/usr/sbin",
+  selboolean { 'httpd_can_network_connect':
+    persistent => true,
+    value    => on,
   }
 }
 
